@@ -1,4 +1,3 @@
-# %%
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -28,19 +27,26 @@ query = st.text_input(
     label="Search proteins by aminoacids sequence e.g. `A E T C Z A O`"
 )
 
-# get data here
-ids = ['1YCR', '1ZCR', '2YCR', '1BCR', '5YLT']
+if query:
+    # get data here
+    import requests
+    from frontend_config import endpoint
+    print(endpoint)
+    response = requests.post(endpoint, data={"query": query})
+    print(response.json())
+    ids = ['1YCR', '1ZCR', '2YCR', '1BCR', '5YLT']
 
-for id in ids:
-  col1, col2 = st.beta_columns([1, 2])
-  with col1:
-    protein_3d(pdb_id=id)
 
-  with col2:
-    st.subheader("Properties")
-    st.markdown(
-      f"""
-        PDB ID: {id}\n
-        [Explore properties](https://www.rcsb.org/structure/{id})
-      """,
-    )
+    for id in ids:
+      col1, col2 = st.beta_columns([1, 2])
+      with col1:
+        protein_3d(pdb_id=id)
+
+      with col2:
+        st.subheader("Properties")
+        st.markdown(
+          f"""
+            PDB ID: {id}\n
+            [Explore properties](https://www.rcsb.org/structure/{id})
+          """,
+        )

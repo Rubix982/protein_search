@@ -38,6 +38,10 @@ class ProtBertExecutor(Executor):
 
         return docs
 
+    @requests(on='/search')
+    def encodeequery(self, query, **kwargs):
+        print(query)
+
     def encode_batch(self, docs: DocumentArray, **kwargs) -> DocumentArray:
         sequences = self.preprocessing(docs.get_attributes("text"))
         encoded_inputs = self.tokenizer(
@@ -97,6 +101,7 @@ class MyIndexer(Executor):
     @requests(on="/search")
     def search(self, docs: "DocumentArray", **kwargs):
         # Load proteins from csv.
+        proteins
         proteins = self._docs #DocumentArray.load(self.save_path)
         results = DocumentArray()
 
@@ -117,6 +122,16 @@ class MyIndexer(Executor):
         self.save_results(results)
 
         return results
+
+    '''
+    @requests(on="/search_request")
+    def search_request(self, query, **kwargs):
+        protein = Document(text=query)
+        results = search(protein)
+
+        for result in results:
+            yield result.text
+    '''
 
     @staticmethod
     def _get_sorted_top_k(
