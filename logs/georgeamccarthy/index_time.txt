@@ -1,0 +1,4 @@
+21/07/2021 16:08 | Indexing 2 proteins took 2.0 s
+21/07/2021 16:11 | Indexing 5 proteins took 16.5 s
+21/07/2021 16:12 | Indexing 10 proteins took 34.5 s
+21/07/2021 16:15 | Indexing 20 proteins took 67.2 s

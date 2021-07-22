@@ -18,3 +18,6 @@ results_path = "results/results.json"
 
 # Prints logs to command line if true.
 print_logs = True
+
+# Number of proteins to index from dataset (max 10,000)
+num_proteins = 50
